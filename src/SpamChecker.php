@@ -41,6 +41,8 @@ class SpamChecker
             ]),
         ]);
 
+        error_log("Testing Doctrine Queue");
+
         $headers = $response->getHeaders();
         if ('discard' === ($headers['x-akismet-pro-tip'][0] ?? '')) {
             return 2;

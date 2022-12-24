@@ -36,6 +36,12 @@ class Comment
     #[ORM\JoinColumn(nullable: false)]
     private ?Conference $conference = null;
 
+    #[ORM\Column(
+        length: 255, 
+        options: ["default" => "submitted"]
+    )]
+    private ?string $state = 'submitted';
+
     public function __toString(): string
     {
         return (string) $this->getEmail();
@@ -108,6 +114,18 @@ class Comment
     public function setConference(?Conference $conference): self
     {
         $this->conference = $conference;
+
+        return $this;
+    }
+
+    public function getState(): ?string
+    {
+        return $this->state;
+    }
+
+    public function setState(string $state): self
+    {
+        $this->state = $state;
 
         return $this;
     }
