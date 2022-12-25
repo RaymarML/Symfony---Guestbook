@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Workflow\Registry;
 use Twig\Environment;
 
+#[Route('/admin')]
 class AdminController extends AbstractController
 {
     private $twig;
@@ -29,7 +30,7 @@ class AdminController extends AbstractController
         $this->bus = $bus;
     }
 
-    #[Route('/admin/comment/review/{id}', name: 'review_comment')]
+    #[Route('/comment/review/{id}', name: 'review_comment')]
     public function reviewComment(
         Request $request, 
         Comment $comment, 
@@ -56,7 +57,6 @@ class AdminController extends AbstractController
         return $this->render('admin/review.html.twig', [
             'transition' => $transition,
             'comment' => $comment,
-        ]);
-               
+        ]); 
     }
 }
