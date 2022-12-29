@@ -34,7 +34,7 @@ class CommentReviewNotification extends Notification implements EmailNotificatio
     public function getChannels(RecipientInterface $recipient): array
     {
         if (preg_match('{\b(great|awesome)\b}i', $this->comment->getText())) {
-            return ['chat/slack'];
+            return ['email', 'chat/slack'];
         }
 
         $this->importance(Notification::IMPORTANCE_LOW);

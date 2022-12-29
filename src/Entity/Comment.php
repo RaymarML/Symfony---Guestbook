@@ -14,11 +14,12 @@ use Symfony\Component\Validator\Constraints as Assert;
 #[ORM\Entity(repositoryClass: CommentRepository::class)]
 #[ORM\HasLifecycleCallbacks()]
 #[ApiResource(
-    collectionOperations: ['get' => ['normalization_context' => ['groups' => 'conference:list']]],
-    itemOperations: ['get' => ['normalization_context' => ['groups' => 'conference:item']]],
-    order: ['year' => 'DESC', 'city' => 'ASC'],
+    collectionOperations: ['get' => ['normalization_context' => ['groups' => 'comment:list']]],
+    itemOperations: ['get' => ['normalization_context' => ['groups' => 'comment:item']]],
+    order: ['createdAt' => 'DESC'],
     paginationEnabled: false,
 )]
+#[ApiFilter(SearchFilter::class, properties: ['conference' => 'exact'])]
 class Comment
 {
     #[ORM\Id]
